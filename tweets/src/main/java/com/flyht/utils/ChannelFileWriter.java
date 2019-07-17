@@ -1,12 +1,11 @@
 package com.flyht.utils;
 
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
-public final class ChannelFileWriter {
+public class ChannelFileWriter {
 
     private final String fileName;
     private final String tweet;
