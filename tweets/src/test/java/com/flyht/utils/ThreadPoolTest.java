@@ -1,11 +1,11 @@
 package com.flyht.utils;
 
 import com.flyht.tweeter.Tweet;
-import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Matchers;
-import org.mockito.Mockito;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
@@ -18,8 +18,7 @@ public class ThreadPoolTest {
 
     @Before
     public void setup() {
-        channelFileWriter = Mockito.mock(ChannelFileWriter.class);
-        executorService = Mockito.mock(ExecutorService.class);
+        executorService = mock(ExecutorService.class);
     }
 
     @Test
@@ -34,14 +33,16 @@ public class ThreadPoolTest {
         ThreadPool threadPool = new ThreadPool(300);
         threadPool.run(new Tweet("golf", "Golf is great"));
         threadPool.shutdown();
-        Mockito.verify(executorService).execute(Matchers.any(Runnable.class));
+        verify(executorService).execute(Matchers.any(Runnable.class));
     }
 
     @Test
     public void run_confirmChannelFileWriterRuns() throws IOException {
+
+        channelFileWriter = mock(ChannelFileWriter.class);
         ThreadPool threadPool = new ThreadPool(300);
         threadPool.run(new Tweet("golf", "Golf is great"));
-        Mockito.verify(channelFileWriter).writeTweet();
+        verify(channelFileWriter).writeTweet();
         threadPool.shutdown();
     }
 

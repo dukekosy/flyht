@@ -34,4 +34,19 @@ public class TweetGeneratorTest {
         assertTrue(tweet.getTweet().contains("Crab") || tweet.getTweet().contains("Fish") || tweet.getTweet().contains("Whale"));
         assertTrue(tweet.getTweet().split(tweet.getFileName()).length > 1);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void generateTweet_checkIfRunsWhenNoTopics_throwsException() {
+        Tweet tweet = new TweetGenerator(Lists.newArrayList()).generateTweet();
+    }
+
+    @Test
+    public void generateTweet_checkIfRunsWhenOneTopics_Runs() {
+        Tweet tweet = new TweetGenerator(Lists.newArrayList("Crab")).generateTweet();
+    }
+
+    @Test
+    public void generateTweet_checkIfRunsWhenSixTopics_Runs() {
+        Tweet tweet = new TweetGenerator(Lists.newArrayList("Crab", "Fish", "Whale", "Shark", "Turtle", "Shrimp")).generateTweet();
+    }
 }
