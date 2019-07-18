@@ -1,4 +1,4 @@
-package com.flyht.utils;
+package com.flyht.tweeter;
 
 import com.flyht.tweeter.Tweet;
 import com.flyht.tweeter.TweetGenerator;
