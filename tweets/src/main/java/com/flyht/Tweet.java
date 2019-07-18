@@ -28,10 +28,11 @@ public class Tweet {
     }
 
     public static void main( String[] args ) throws IOException {
-        TweetGenerator tweetGenerator = new TweetGenerator(getUserInput());
+        List<String> topics = getUserInput();
         ThreadPool threadPool = new ThreadPool(300);
         System.out.println("Hit Enter to stop");
-        while(true){
+        while(System.in.read() == 13){
+            TweetGenerator tweetGenerator = new TweetGenerator(topics);
             com.flyht.tweeter.Tweet tweet = tweetGenerator.generateTweet();
             threadPool.run(tweet);
         }

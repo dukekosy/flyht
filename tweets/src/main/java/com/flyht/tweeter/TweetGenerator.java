@@ -23,7 +23,4 @@ public final class TweetGenerator {
         return new Tweet(topic, sb.append(topic).append("\n").toString());
     }
 
-    //test word exists in line
-    //test for word doesn't exist by it self.
-
 }

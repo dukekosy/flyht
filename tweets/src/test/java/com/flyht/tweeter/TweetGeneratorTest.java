@@ -1,34 +1,37 @@
 package com.flyht.tweeter;
 
-import com.flyht.tweeter.Tweet;
-import com.flyht.tweeter.TweetGenerator;
 import com.google.common.collect.Lists;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 public class TweetGeneratorTest {
 
-    static TweetGenerator tweetGenerator;
-
-    @BeforeClass
-    public static void setUp() throws Exception {
-        tweetGenerator = new TweetGenerator(Lists.newArrayList("Crab","Fish","Whale"));
+    @Test
+    public void generateTweet_checkIfRuns_runsSuccessfully() {
+        Tweet tweet = new TweetGenerator(Lists.newArrayList("Crab", "Fish", "Whale")).generateTweet();
     }
 
     @Test
-    public void generateTweet_checkIfRuns_runs() {
-        Tweet tweet = tweetGenerator.generateTweet();
+    public void generateTweet_checkIfTweetContainsLetters_returnsTrue() {
+        assertTrue(new TweetGenerator(Lists.newArrayList("Crab", "Fish", "Whale")).generateTweet()
+                                                                                  .getTweet()
+                                                                                  .replaceAll("\\s", "")
+                                                                                  .chars()
+                                                                                  .allMatch(Character::isLetter));
     }
 
     @Test
     public void generateTweet_checkIfTweetContainsATopic_hasOneTopicString() {
-        assertTrue(tweetGenerator.generateTweet().getTweet().chars().allMatch(Character::isLetter));
+        Tweet tweet = new TweetGenerator(Lists.newArrayList("Crab", "Fish", "Whale")).generateTweet();
+        assertTrue(tweet.getTweet().contains("Crab") || tweet.getTweet().contains("Fish") || tweet.getTweet().contains("Whale"));
+        assertTrue(tweet.getFileName().contains("Crab") || tweet.getFileName().contains("Fish") || tweet.getFileName().contains("Whale"));
     }
 
     @Test
-    public void generateTweet_checkIfTweetDoesnotContainATopic_hasRandomText() {
-        assertTrue(tweetGenerator.generateTweet().getTweet().chars().allMatch(Character::isLetter));
+    public void generateTweet_checkIfTweetDoesnotOnlyContainsATopic_returnsTrueWhenMoreThanTopicIsPresent() {
+        Tweet tweet = new TweetGenerator(Lists.newArrayList("Crab", "Fish", "Whale")).generateTweet();
+        assertTrue(tweet.getTweet().contains("Crab") || tweet.getTweet().contains("Fish") || tweet.getTweet().contains("Whale"));
+        assertTrue(tweet.getTweet().split(tweet.getFileName()).length > 1);
     }
 }

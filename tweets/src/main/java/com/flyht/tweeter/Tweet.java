@@ -37,4 +37,5 @@ public class Tweet {
     public int hashCode() {
         return Objects.hash(fileName, tweet);
     }
+
 }
