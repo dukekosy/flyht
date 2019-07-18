@@ -5,6 +5,7 @@ import com.flyht.tweeter.TweetGenerator;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -16,7 +17,11 @@ public class Tweet {
         while (numberOfTopics == 0 || numberOfTopics > maxTopics) {
             System.out.println("Enter number of topics, upto " + maxTopics + " different topics");
             Scanner sc = new Scanner(System.in);
-            numberOfTopics = sc.nextInt();
+            try {
+                numberOfTopics = sc.nextInt();
+            } catch (InputMismatchException ex) {
+                System.out.println("Only a numeric input between 1 to 5 is allowed");
+            }
         }
         List<String> topics = new ArrayList<>();
         for(int i = 0; i < numberOfTopics; i++) {
