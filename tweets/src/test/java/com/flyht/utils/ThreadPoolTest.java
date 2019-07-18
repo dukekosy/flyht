@@ -1,5 +1,6 @@
 package com.flyht.utils;
 
+import com.flyht.tweeter.Tweet;
 import org.hamcrest.CoreMatchers;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,14 +25,14 @@ public class ThreadPoolTest {
     @Test
     public void run_runsSuccessfully() {
         ThreadPool threadPool = new ThreadPool(300);
-        threadPool.run("golf", "Golf is great");
+        threadPool.run(new Tweet("golf", "Golf is great"));
         threadPool.shutdown();
     }
 
     @Test
     public void run_confirmExecutorServiceRuns() {
         ThreadPool threadPool = new ThreadPool(300);
-        threadPool.run("golf", "Golf is great");
+        threadPool.run(new Tweet("golf", "Golf is great"));
         threadPool.shutdown();
         Mockito.verify(executorService).execute(Matchers.any(Runnable.class));
     }
@@ -39,7 +40,7 @@ public class ThreadPoolTest {
     @Test
     public void run_confirmChannelFileWriterRuns() throws IOException {
         ThreadPool threadPool = new ThreadPool(300);
-        threadPool.run("golf", "Golf is great");
+        threadPool.run(new Tweet("golf", "Golf is great"));
         Mockito.verify(channelFileWriter).writeTweet();
         threadPool.shutdown();
     }
@@ -47,8 +48,8 @@ public class ThreadPoolTest {
     @Test(expected = RejectedExecutionException.class)
     public void shutdown_testIfShutDown() {
         ThreadPool threadPool = new ThreadPool(300);
-        threadPool.run("golf", "Golf is great");
+        threadPool.run(new Tweet("golf", "Golf is great"));
         threadPool.shutdown();
-        threadPool.run("tennis", "ball");
+        threadPool.run(new Tweet("tennis", "ball"));
     }
 }

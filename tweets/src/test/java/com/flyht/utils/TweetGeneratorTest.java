@@ -1,11 +1,10 @@
 package com.flyht.utils;
 
+import com.flyht.tweeter.Tweet;
+import com.flyht.tweeter.TweetGenerator;
 import com.google.common.collect.Lists;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
-import java.util.ArrayList;
 
 import static org.junit.Assert.*;
 
@@ -19,17 +18,17 @@ public class TweetGeneratorTest {
     }
 
     @Test
-    public void generateTweet_checkIfRuns_returnsString() {
-        assertTrue(tweetGenerator.generateTweet().chars().allMatch(Character::isLetter));
+    public void generateTweet_checkIfRuns_runs() {
+        Tweet tweet = tweetGenerator.generateTweet();
     }
 
     @Test
     public void generateTweet_checkIfTweetContainsATopic_hasOneTopicString() {
-        assertTrue(tweetGenerator.generateTweet().chars().allMatch(Character::isLetter));
+        assertTrue(tweetGenerator.generateTweet().getTweet().chars().allMatch(Character::isLetter));
     }
 
     @Test
     public void generateTweet_checkIfTweetDoesnotContainATopic_hasRandomText() {
-        assertTrue(tweetGenerator.generateTweet().chars().allMatch(Character::isLetter));
+        assertTrue(tweetGenerator.generateTweet().getTweet().chars().allMatch(Character::isLetter));
     }
 }

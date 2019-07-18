@@ -1,5 +1,7 @@
 package com.flyht.utils;
 
+import com.flyht.tweeter.Tweet;
+
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -13,11 +15,11 @@ public final class ThreadPool {
         executorService = Executors.newFixedThreadPool(workers);
     }
 
-    public void run(String fileName, String tweet) {
+    public void run(Tweet tweet) {
         Runnable runnableTask = () -> {
             try {
                 try {
-                    new ChannelFileWriter(fileName, tweet).writeTweet();
+                    new ChannelFileWriter(tweet.getFileName(), tweet.getTweet()).writeTweet();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

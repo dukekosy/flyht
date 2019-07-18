@@ -1,4 +1,4 @@
-package com.flyht.utils;
+package com.flyht.tweeter;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
@@ -17,10 +17,12 @@ public final class TweetGenerator {
         }
     }
 
-    public String generateTweet() {
-        if(new Random().nextBoolean())
-            return sb.append(topics.get(new Random().nextInt(topics.size()-1))).toString();
+    public Tweet generateTweet() {
+        if(new Random().nextBoolean()) {//test for when topic is size 1. test for bounds for nextInt
+            String topic = topics.get(new Random().nextInt(topics.size()));
+            return new Tweet(topic, sb.append(topic).toString());
+        }
         else
-            return sb.toString();
+            return new Tweet("", sb.toString());
     }
 }
