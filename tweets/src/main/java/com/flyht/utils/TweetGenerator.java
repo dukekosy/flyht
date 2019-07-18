@@ -1,16 +1,26 @@
 package com.flyht.utils;
 
+import org.apache.commons.lang3.RandomStringUtils;
+
 import java.util.List;
+import java.util.Random;
 
-public class TweetGenerator {
+public final class TweetGenerator {
 
-    List<String> topics;
+    private final List<String> topics;
+    private final StringBuffer sb = new StringBuffer();
 
-    public TweetGenerator(List<String> topics) {
+    public TweetGenerator(final List<String> topics) {
         this.topics = topics;
+        for(int i=0;i<10;i++) {
+            sb.append(RandomStringUtils.randomAlphabetic(new Random().nextInt(15)) + " ");
+        }
     }
 
     public String generateTweet() {
-        return "";
+        if(new Random().nextBoolean())
+            return sb.append(topics.get(new Random().nextInt(topics.size()-1))).toString();
+        else
+            return sb.toString();
     }
 }
