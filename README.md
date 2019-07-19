@@ -7,3 +7,13 @@ I started researching realtime design patterns. Found a number of articles on co
 Do I need to do a tweeter rest client implementation. Even if I did how would you create sufficient test data. Decided to simulation this. 
 
 Created all the parts independently, file writing, threadpool, generating tweets and combined their use in a main method. 
+
+I have set the threadpool size to 300 for now, ideally this would come off a property file.
+
+to run checkout the repository 
+run mvn clean install
+go to the target folder and run
+java -cp tweets-1.0-SNAPSHOT.jar com.flyht.Tweet
+
+
+ 
