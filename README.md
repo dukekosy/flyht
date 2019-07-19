@@ -10,11 +10,11 @@ Created all the parts independently, file writing, threadpool, generating tweets
 
 I have set the threadpool size to 300 for now, ideally this would come off a property file.
 
-to run checkout the repository
+to run checkout the repository, 
  
-run mvn clean install
+run mvn clean install, 
 
-go to the target folder and run
+go to the target folder and run, 
 
 java -cp tweets-1.0-SNAPSHOT.jar com.flyht.Tweet
 
